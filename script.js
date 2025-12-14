@@ -32,8 +32,10 @@ const loadCard=()=>{
     .then(result=>{
       allPlansData=result.plants;
       allCards(allPlansData);
+     
     });
 };
+
 const loadPlantDetail=async(id)=>{
   const url=`https://openapi.programming-hero.com/api/plant/${id}`;
   //console.log(url);
@@ -41,10 +43,7 @@ const loadPlantDetail=async(id)=>{
   const details=await res.json();
 displayPlantDetails(details.plants);
 }
-// {id: 5, image: 'https://i.ibb.co.com/qY8qS7YN/champa-min.jpg',
-// name: 'Champa', description: 'A fragrant flowering tree that adorns gardens with…y cherished in traditional rituals and
-//  perfumery.',
-//    category: 'Flowering Tree', …}
+
 const displayPlantDetails=(plant)=>{
 console.log(plant);
 const detailsCard=document.getElementById("details-container");
@@ -59,8 +58,10 @@ detailsCard.innerHTML=`
 document.getElementById("plant_modal").showModal();
  
 }
-
-
+const warn=(cardName)=>{
+  alert(`${cardName} has been added to the card`);
+}
+//onclick="alert('${card.name} has been added to the card')"
 const allCards=(cardInfo)=>{
  // const plants=cardInfo.plants;
   const cardContainer=document.getElementById("card-container");
@@ -77,7 +78,7 @@ const allCards=(cardInfo)=>{
         <label for="">${card.category}</label>
         <h3>৳${card.price}</h3>
     </div>
-           <button   class="btn bg-[#15803D] text-white  mt-5 w-full rounded-3xl" >Add To Card</button>
+           <button  onclick="warn('${card.name}')"   class="btn bg-[#15803D] text-white  mt-5 w-full rounded-3xl" >Add To Card</button>
 
 </div>
      </div>
@@ -88,15 +89,10 @@ const allCards=(cardInfo)=>{
  
 }
 loadCard();
-// const modal=()=>{
-//   fetch()
-// }
-
 
 const matched=(categoryName)=>{
 const filterPlants=allPlansData.filter(card=>card.category===categoryName);
 allCards(filterPlants);
-
 
  }
  
