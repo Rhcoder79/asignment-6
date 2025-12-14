@@ -49,10 +49,10 @@ const displayPlantDetails=(plant)=>{
 console.log(plant);
 const detailsCard=document.getElementById("details-container");
 detailsCard.innerHTML=`
-<h3 class="font-bold">${plant.name}</h3>
-        <div><img src="${plant.image}" alt="image not fount"></div>
+<h3 class="font-bold text-[#1f2937] text-xl">${plant.name}</h3>
+        <div class='w-11/12 mx-auto h-56' ><img  class='w-[100%] h-[100%]' src="${plant.image}" alt="image not fount"></div>
         <p><span class="font-bold">Category:</span> ${plant.category}</p>
-        <h3><span class="font-bold">Price:</span> ${plant.price}</h3>
+        <h3><span class="font-bold">Price:</span> ৳${plant.price}</h3>
         <p><span class="font-bold">Description:</span> ${plant.description}</p>
         
 `;
@@ -75,7 +75,7 @@ const allCards=(cardInfo)=>{
     <p>${card.description }</p>
     <div>
         <label for="">${card.category}</label>
-        <h3>${card.price}</h3>
+        <h3>৳${card.price}</h3>
     </div>
            <button   class="btn bg-[#15803D] text-white  mt-5 w-full rounded-3xl" >Add To Card</button>
 
@@ -99,5 +99,4 @@ allCards(filterPlants);
 
 
  }
-
-
+ 
