@@ -49,14 +49,15 @@ const displayPlantDetails=(plant)=>{
 console.log(plant);
 const detailsCard=document.getElementById("details-container");
 detailsCard.innerHTML=`
-<h3>${plant.name}</h3>
+<h3 class="font-bold">${plant.name}</h3>
         <div><img src="${plant.image}" alt="image not fount"></div>
-        <p>${plant.description}</p>
-        <p>${plant.category}</p>
-        <h3>${plant.price}</h3>
+        <p><span class="font-bold">Category:</span> ${plant.category}</p>
+        <h3><span class="font-bold">Price:</span> ${plant.price}</h3>
+        <p><span class="font-bold">Description:</span> ${plant.description}</p>
+        
 `;
 document.getElementById("plant_modal").showModal();
-
+ 
 }
 
 
