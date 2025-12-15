@@ -32,7 +32,7 @@ const loadCategory=()=>{
     for(let name of categoryName){
    //  console.log(name);
          const categoryList=document.createElement('li');
-           categoryList.className='list-items btn btn-outline btn-primary';
+           categoryList.className='list-items btn btn-outline btn-primary center';
           
        categoryList.innerHTML= `
               <a   href="#">${name.category_name}</a>
