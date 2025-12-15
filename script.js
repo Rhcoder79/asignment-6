@@ -1,6 +1,16 @@
  console.log('i am connected');
  let allPlansData=[];
  let totalAmount=0;
+ const manageSpinner=(status)=>{
+    if(status==true){
+        document.getElementById('spinner').classList.remove('hidden');
+        document.getElementById('card-container').classList.add('hidden');
+  
+    }else{
+         document.getElementById('word-container').classList.remove('hidden');
+        document.getElementById('card-container').classList.add('hidden');
+    }
+}
 const loadCategory=()=>{
   const url='https://openapi.programming-hero.com/api/categories';
   fetch(url)
@@ -68,9 +78,16 @@ document.getElementById("plant_modal").showModal();
 // .addEventListener('click',function(){
 //   document.getElementById()
 // })
-const cross=()=>{
-  const erase=document.getElementsByClassName('card-item').remove()
-  return;
+const cross=(element,itemPrice)=>{
+const cardItemRemove=element.parentElement.parentElement.parentElement;
+cardItemRemove.remove();
+const priceConvert=parseInt(itemPrice);
+totalAmount=totalAmount-priceConvert;
+ const totalCalculation=document.getElementById('total');
+ totalCalculation.innerHTML=`
+    <h3 class='font-bold text-[#1f2937] text-right mr-2'>Total:৳${totalAmount}</h3>
+    `;
+
 }
 const warn=(cardName,cardPrice)=>{
   alert(`${cardName} has been added to the card`);
@@ -85,7 +102,7 @@ const warn=(cardName,cardPrice)=>{
                 <h3  class='font-semibold'>৳${cardPrice}</h3>
         </div>
         <div>
-            <i onclick="cross()" class="fa-solid fa-xmark"></i>
+            <i onclick="cross(this,${cardPrice})" class="fa-solid fa-xmark"></i>
         </div>
         </div>
 
@@ -99,7 +116,7 @@ const warn=(cardName,cardPrice)=>{
     totalCalculation.innerHTML=`
     <h3 class='font-bold text-[#1f2937] text-right mr-2'>Total:৳${totalAmount}</h3>
     `;
-    total.append(total);
+    totalCalculation.append(totalCalculation);
     
   //console.log('card name:',cardName );
   //console.log('card price $:',cardPrice);
