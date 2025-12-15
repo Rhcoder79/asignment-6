@@ -15,9 +15,18 @@
 <!-- link css -->
 <link rel="stylesheet" href="./style.css">
 <style>
+    .list-items{
+        cursor: pointer;
+    }
+    .list-items.list-items.active{
+        background-color: blue;
+        color: white;
+    }
+    
     .cards{
         border: 2px solid red;
         padding: 8px;
+        border-radius: 8px;
     }
     .cards>div>h3{
       
@@ -54,9 +63,9 @@
 </head>
 <body>
 <header class="bg-[#15803D] ">
-<nav class="flex justify-between text-[#fff] font-semibold md:p-10   max-md:p-5 items-center ">
-     <div><h4 class="text-2xl">Green Earth</h4></div>
-    <div><ul class="flex gap-3  ">
+<nav class="flex justify-between text-[#fff] font-semibold md:p-10 p-4   items-center ">
+     <div><h4 class="text-xl md:text-2xl">Green Earth</h4></div>
+    <div><ul class="flex gap-2 md:gap-3 text-sm md:text-base  ">
         <li>About </li>
         <li>Gallery</li>
         <li>Plant a Tree</li>
@@ -77,13 +86,19 @@ generations.</p>
 </section>
 <br><br>
 <!-- #f0fdf4 -->
+  <section id="spinner" class="flex justify-center items-center py-10 hidden" >
+<span class="loading loading-bars loading-xl">
+  
+</span>
+</section>
 <section class="Choose-Your-Trees  bg-[#CCE7D2] w-11/12 mx-auto">
     <div class="text-center p-2" ><h1 class="text-[#1F2937] text-2xl font-bold">Choose Your Trees</h1></div>
-    <div class="grid grid-cols-6 p-2 gap-2">
-        <div class="trees-catagories bg-[#fff] border-black border-[2px]">
+    <div class="grid grid-cols-1 md:grid-cols-6 p-2 gap-4 ">
+        <div class="trees-catagories bg-[#fff] border-black border-[2px] col-span-1">
          <h3 class="font-bold text-xl ml-1">Categories</h3>
          <h4 class="text-[#1F2937] hover:bg-[#15803D] hover:text-[#fff] font-bold ml-1">All Trees</h4>
-         <ul id="all-category"  class="catar font-bold flex flex-col gap-4 mt-4 ml-1  text-[#1F2937]">
+         
+         <ul id="all-category"  class="catar font-bold flex flex-col gap-2 md:gap-4 mt-2 ml-1  text-[#1F2937]">
             
             <!-- 
             <li>Fruit Trees</li>
@@ -98,7 +113,8 @@ generations.</p>
             <li>Aquatic Plants</li> -->
          </ul>
     </div>
-    <div id="card-container"  class="cards-section bg-[#fff] col-span-4 grid grid-cols-3 gap-1 border-black border-[2px]">
+    
+    <div id="card-container"  class="cards-section bg-[#fff] col-span-1 md:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 border-black border-[2px]">
      <!-- <div class="cards">
         <div><img src="assets/hero-leaf1.png" alt=""></div>
      <div >
@@ -217,12 +233,8 @@ generations.</p>
 </div>
      </div> -->
     </div>
-    <section id="spinner" class="flex justify-center items-center py-10 hidden" >
-<span class="loading loading-bars loading-xl">
   
-</span>
-</section>
-    <div class="order-info bg-[#fff] border-black border-[2px]">
+    <div class="order-info bg-[#fff] border-black border-[2px] col-span-1">
         <h2 class="font-bold text-[#1f2937] ml-1">Your Card</h2>
   <div id="add-to-cart"  ></div>
         <div id="total"></div>
@@ -230,14 +242,15 @@ generations.</p>
 
     </div>
 </section>
+ 
 <br> <br>
 <section class="campaign">
     <div class="fir text-center">
     <h3 class="text-[#1F2937] font-bold text-2xl">About the Campaign</h3>
 </div><br>
-   <div class="cam-bottom flex w-[80%]  mx-auto justify-between items-center max-[835px]:items-stretch   ">
-   <div class="w-[48%] " ><img class="w-[100%] h-full"  src="assets/about.png" alt=""></div>
-    <div class=" w-[50%] leading-loose max-sm:leading-none" >
+   <div class="cam-bottom flex w-[90%] md:w-[80%]  mx-auto justify-between items-center flex-col md:flex-row gap-4   ">
+   <div class="w-full md:w-[48%] " ><img class="w-full h-auto"  src="assets/about.png" alt=""></div>
+    <div class="w-full md:w-[50%] leading-loose max-sm:leading-none" >
 <p class="text-[#1F2937]  opacity-80">Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide.
 By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.</p>
 <ul class="ml-2 list-disc list-inside text-[#1F2937]  opacity-80 mt-3">

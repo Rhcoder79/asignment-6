@@ -7,9 +7,14 @@
         document.getElementById('card-container').classList.add('hidden');
   
     }else{
-         document.getElementById('word-container').classList.remove('hidden');
-        document.getElementById('card-container').classList.add('hidden');
+         document.getElementById('card-container').classList.remove('hidden');
+        document.getElementById('spinner').classList.add('hidden');
     }
+}
+const removeActive=()=>{
+    const listContainer=document.querySelectorAll(".list-items")
+listContainer.forEach((list)=>list.classList.remove('active'));
+
 }
 const loadCategory=()=>{
   const url='https://openapi.programming-hero.com/api/categories';
@@ -18,7 +23,7 @@ const loadCategory=()=>{
   .then(jsonResult=>displayCategory(jsonResult.categories));
   
 }
-
+//onclick="matched('${name.category_name}')"
  const displayCategory=(categoryName)=>{
     
 //     const categories=categoryName.categories
@@ -27,16 +32,24 @@ const loadCategory=()=>{
     for(let name of categoryName){
    //  console.log(name);
          const categoryList=document.createElement('li');
-         
+           categoryList.className='list-items btn btn-outline btn-primary';
+          
        categoryList.innerHTML= `
-              <a onclick="matched('${name.category_name}')" href="#">${name.category_name}</a>
+              <a   href="#">${name.category_name}</a>
               `;
+              categoryList.addEventListener('click',function(){
+                removeActive();
+                this.classList.add('active');
+                const nameToFilter=this.querySelector('a').innerText;
+                matched(nameToFilter);
+              });
          allCategory.append(categoryList);
         
     }
  } 
  loadCategory();
 const loadCard=()=>{
+
     const url='https://openapi.programming-hero.com/api/plants';
     fetch(url)
     .then(res=>res.json()) 
@@ -60,7 +73,7 @@ console.log(plant);
 const detailsCard=document.getElementById("details-container");
 detailsCard.innerHTML=`
 <h3 class="font-bold text-[#1f2937] text-xl">${plant.name}</h3>
-        <div class='w-11/12 mx-auto h-56' ><img  class='w-[100%] h-[100%]' src="${plant.image}" alt="image not fount"></div>
+        <div class='w-11/12 mx-auto h-56' ><img  class='w-[100%] h-[100%] object-cover' src="${plant.image}" alt="image not fount"></div>
         <p><span class="font-bold">Category:</span> ${plant.category}</p>
         <h3><span class="font-bold">Price:</span> ৳${plant.price}</h3>
         <p><span class="font-bold">Description:</span> ${plant.description}</p>
@@ -102,7 +115,7 @@ const warn=(cardName,cardPrice)=>{
                 <h3  class='font-semibold'>৳${cardPrice}</h3>
         </div>
         <div>
-            <i onclick="cross(this,${cardPrice})" class="fa-solid fa-xmark"></i>
+            <i onclick="cross(this,${cardPrice})" class="fa-solid fa-xmark cursor-pointer"></i>
         </div>
         </div>
 
@@ -116,7 +129,7 @@ const warn=(cardName,cardPrice)=>{
     totalCalculation.innerHTML=`
     <h3 class='font-bold text-[#1f2937] text-right mr-2'>Total:৳${totalAmount}</h3>
     `;
-    totalCalculation.append(totalCalculation);
+    //totalCalculation.append(totalCalculation);
     
   //console.log('card name:',cardName );
   //console.log('card price $:',cardPrice);
@@ -125,15 +138,16 @@ const warn=(cardName,cardPrice)=>{
 //onclick="alert('${card.name} has been added to the card')"
 const allCards=(cardInfo)=>{
  // const plants=cardInfo.plants;
+ 
   const cardContainer=document.getElementById("card-container");
   cardContainer.innerHTML='';
   for(const card of cardInfo){
     const cardDiv=document.createElement('div');
     cardDiv.innerHTML=`
         <div class="cards">
-        <div><img src="${card.image}" alt="image not fount"></div>
+        <div class='h-48 overflow-hidden' ><img class="w-full h-full object-cover" src="${card.image}" alt="image not fount"></div>
      <div >
-    <h3 onclick="loadPlantDetail(${card.id})" >${card.name}</h3>
+    <h3 class="cursor-pointer" onclick="loadPlantDetail(${card.id})" >${card.name}</h3>
     <p>${card.description }</p>
     <div>
         <label for="">${card.category}</label>
@@ -147,13 +161,16 @@ const allCards=(cardInfo)=>{
     cardContainer.append(cardDiv);
    
   }
- 
+  manageSpinner(false);
+  
 }
 loadCard();
 
 const matched=(categoryName)=>{
+  manageSpinner(true);
+  setTimeout(()=>{
 const filterPlants=allPlansData.filter(card=>card.category===categoryName);
 allCards(filterPlants);
-
+  },200);
  }
  
