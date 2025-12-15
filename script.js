@@ -1,5 +1,6 @@
  console.log('i am connected');
  let allPlansData=[];
+ let totalAmount=0;
 const loadCategory=()=>{
   const url='https://openapi.programming-hero.com/api/categories';
   fetch(url)
@@ -58,26 +59,52 @@ detailsCard.innerHTML=`
 document.getElementById("plant_modal").showModal();
  
 }
+//  document.getElementById("clear-btn" )
+//  .addEventListener('click',function(){
+//    document.getElementById('history-btn').remove()
+
+//  })
+// document.getElementById('cross')
+// .addEventListener('click',function(){
+//   document.getElementById()
+// })
+const cross=()=>{
+  const erase=document.getElementsByClassName('card-item').remove()
+  return;
+}
 const warn=(cardName,cardPrice)=>{
   alert(`${cardName} has been added to the card`);
     const addToCard=document.getElementById("add-to-cart")
     const addFeature=document.createElement('div');
+    addFeature.className='card-item';
+    
     addFeature.innerHTML=`
-    <div class='bg-[#8C8C8C]  rounded-md   flex justify-between items-center m-2 p-1'>
+    <div  class='bg-[#8C8C8C]  rounded-md   flex justify-between items-center m-2 p-1'>
     <div  >
             <h3 class='font-bold text-[#1f2937]'>${cardName}</h3>
-                <h3 class='font-semibold'>৳${cardPrice}</h3>
+                <h3  class='font-semibold'>৳${cardPrice}</h3>
         </div>
         <div>
-            <i class="fa-solid fa-xmark"></i>
+            <i onclick="cross()" class="fa-solid fa-xmark"></i>
         </div>
         </div>
-        <div><h3>Total:</h3></div>
+
     `;
     addToCard.append(addFeature);
+    const priceConvert=parseInt(cardPrice);
+
+     totalAmount=totalAmount+priceConvert;
+
+    const totalCalculation=document.getElementById('total');
+    totalCalculation.innerHTML=`
+    <h3 class='font-bold text-[#1f2937] text-right mr-2'>Total:৳${totalAmount}</h3>
+    `;
+    total.append(total);
+    
   //console.log('card name:',cardName );
   //console.log('card price $:',cardPrice);
 }
+
 //onclick="alert('${card.name} has been added to the card')"
 const allCards=(cardInfo)=>{
  // const plants=cardInfo.plants;
