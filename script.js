@@ -58,8 +58,25 @@ detailsCard.innerHTML=`
 document.getElementById("plant_modal").showModal();
  
 }
-const warn=(cardName)=>{
+const warn=(cardName,cardPrice)=>{
   alert(`${cardName} has been added to the card`);
+    const addToCard=document.getElementById("add-to-cart")
+    const addFeature=document.createElement('div');
+    addFeature.innerHTML=`
+    <div class='bg-[#8C8C8C]  rounded-md   flex justify-between items-center m-2 p-1'>
+    <div  >
+            <h3 class='font-bold text-[#1f2937]'>${cardName}</h3>
+                <h3 class='font-semibold'>৳${cardPrice}</h3>
+        </div>
+        <div>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        </div>
+        <div><h3>Total:</h3></div>
+    `;
+    addToCard.append(addFeature);
+  //console.log('card name:',cardName );
+  //console.log('card price $:',cardPrice);
 }
 //onclick="alert('${card.name} has been added to the card')"
 const allCards=(cardInfo)=>{
@@ -78,7 +95,7 @@ const allCards=(cardInfo)=>{
         <label for="">${card.category}</label>
         <h3>৳${card.price}</h3>
     </div>
-           <button  onclick="warn('${card.name}')"   class="btn bg-[#15803D] text-white  mt-5 w-full rounded-3xl" >Add To Card</button>
+           <button  onclick="warn('${card.name}',${card.price})"   class="btn bg-[#15803D] text-white  mt-5 w-full rounded-3xl" >Add To Card</button>
 
 </div>
      </div>
